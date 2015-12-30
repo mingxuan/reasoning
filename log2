@@ -1,3 +1,0 @@
-/home/wangmingxuan/build/Theano/theano/scan_module/scan_perform_ext.py:135: RuntimeWarning: numpy.ndarray size changed, may indicate binary incompatibility
-  from scan_perform.scan_perform import *
-INFO:__main__:train err 0.911
