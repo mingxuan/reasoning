@@ -41,7 +41,7 @@ if __name__ == '__main__':
 
     updates = adadelta(params, grads)
 
-    fn = theano.function([x, x_mask, y, y_mask, l], [cost], updates=updates)
+    fn = theano.function([x, x_mask, y, y_mask, l], [errors], updates=updates)
     # fn = theano.function([x, x_mask, y, y_mask, l], shapes, updates=updates)
     test_fn = theano.function([x, x_mask, y, y_mask, l], [errors])
 
