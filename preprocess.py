@@ -50,6 +50,8 @@ if __name__=='__main__':
     config = getattr(configurations, 'get_config')()
     train_args = config['train_file'] + [config['raw_train']]
     test_args = config['test_file'] + [config['raw_test']]
+    print train_args
+    print test_args
     pre_procsee(*train_args)
     pre_procsee(*test_args)
 

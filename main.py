@@ -41,7 +41,8 @@ if __name__ == '__main__':
 
     updates = adadelta(params, grads)
 
-    fn = theano.function([x, x_mask, y, y_mask, l], [errors], updates=updates)
+    fn = theano.function([x, x_mask, y, y_mask, l], [cost], updates=updates)
+    # fn = theano.function([x, x_mask, y, y_mask, l], shapes, updates=updates)
     test_fn = theano.function([x, x_mask, y, y_mask, l], [errors])
 
     for _ in range(300):
@@ -51,13 +52,13 @@ if __name__ == '__main__':
         sums= 0
         for facts, question, label in data_class.data_stream():
             sums += fn(facts[0].T, facts[1].T, question[0].T, question[1].T, label)[0]
-            i+=1
+            i+=label.shape[0]
         logger.info("train err {}".format(float(sums)/float(i)))
         i=0
         sums= 0
         for facts, question, label in test_class.data_stream():
-            sums += fn(facts[0].T, facts[1].T, question[0].T, question[1].T, label)[0]
-            i+=1
+            sums += test_fn(facts[0].T, facts[1].T, question[0].T, question[1].T, label)[0]
+            i+=label.shape[0]
         logger.info("test err {}".format(float(sums)/float(i)))
 
 

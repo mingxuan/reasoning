@@ -23,6 +23,7 @@ class LogisticRegression(object):
             pmf = T.nnet.softmax(energy)
 
         self.p_y_given_x = pmf
+        self.y_pred = T.argmax(self.p_y_given_x, axis=-1)
 
         # compute prediction as class whose probability is maximal in
         # symbolic form
@@ -46,7 +47,7 @@ class LogisticRegression(object):
         return T.sum(ce)
 
     def errors(self, y):
-        y_pred = T.argmax(self.p_y_given_x, axis=-1)
+        y_pred = self.y_pred
         if y.ndim == 2:
             y = y.flatten()
             y_pred = y_pred.flatten()

@@ -43,8 +43,6 @@ class Reason(object):
         self.errors = logistic_layer.errors(y)
         return self.cost, self.decoder_cost
 
-
-
     def interact(self, facts_rep, questions_rep):
         self.W_f = param_init().orth((self.n_hids, self.n_hids))
         self.W_q = param_init().orth((self.n_hids, self.n_hids))

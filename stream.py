@@ -62,8 +62,8 @@ class preprocess(object):
         vocab_dic['<unk>'] = len(vocab_dic)
         pickle.dump((vocab_dic, res_dic), open(dic_file_name, 'w'))
         logger.info('dict file dumped')
-        logger.info('vocab size is {}'.format(len(self.vocab_dic)))
-        logger.info('label size is {}'.format(len(self.res_dic)))
+        logger.info('vocab size is {}'.format(len(vocab_dic)))
+        logger.info('label size is {}'.format(len(res_dic)))
         return vocab_dic, res_dic
 
     @staticmethod
@@ -113,5 +113,8 @@ class preprocess(object):
 if __name__ == '__main__':
     train_file = config['train_file']
     data_class = preprocess(*train_file)
+    # for data in data_class.data_stream():
+        # print data[2]
+        # break
 
 
